@@ -1,3 +1,9 @@
+/*
+ * SubTrackr - Subscription Management Platform
+ * Created by: Nicolette Mashaba
+ * Copyright (c) 2025 Nicolette Mashaba
+ */
+
 using System;
 using SubTrackr.Core.Enums;
 

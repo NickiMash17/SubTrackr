@@ -1,3 +1,12 @@
+/*
+ * SubTrackr - Subscription Management Platform
+ * 
+ * Created by: Nicolette Mashaba
+ * GitHub: https://github.com/NickiMash17/SubTrackr
+ * 
+ * Copyright (c) 2025 Nicolette Mashaba
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;

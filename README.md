@@ -365,9 +365,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👤 Author
 
-**NickiMash17**
+**Nicolette Mashaba**
+
+Created by **Nicolette Mashaba**
 
 - GitHub: [@NickiMash17](https://github.com/NickiMash17)
+- Repository: [SubTrackr](https://github.com/NickiMash17/SubTrackr)
 
 ---
 
@@ -384,5 +387,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Made with ❤️ using .NET 8.0**
 
 ⭐ Star this repo if you find it helpful!
+
+---
+
+**Created by Nicolette Mashaba** 🎨
+
+*SubTrackr - Your subscription management solution*
 
 </div>

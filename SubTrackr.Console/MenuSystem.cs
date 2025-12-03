@@ -1,3 +1,9 @@
+/*
+ * SubTrackr - Subscription Management Platform
+ * Created by: Nicolette Mashaba
+ * Copyright (c) 2025 Nicolette Mashaba
+ */
+
 using System;
 using SubTrackr.Core.Models;
 using SubTrackr.Core.Services;
@@ -8,6 +14,8 @@ namespace SubTrackr.ConsoleApp
     /// <summary>
     /// Menu system for the SubTrackr console application
     /// This class can be used to refactor menu logic from Program.cs if needed
+    /// 
+    /// Created by: Nicolette Mashaba
     /// </summary>
     public static class MenuSystem
     {
