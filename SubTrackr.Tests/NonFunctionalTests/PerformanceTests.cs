@@ -47,8 +47,8 @@ namespace SubTrackr.Tests.NonFunctionalTests
             var payments = paymentService.GetPaymentHistory(user.Id);
             Assert.AreEqual(paymentCount, payments.Count);
             
-            Console.WriteLine($"Performance: {paymentCount} payments processed in {stopwatch.ElapsedMilliseconds}ms");
-            Console.WriteLine($"Average: {stopwatch.ElapsedMilliseconds / paymentCount}ms per payment");
+            TestContext.Progress.WriteLine($"Performance: {paymentCount} payments processed in {stopwatch.ElapsedMilliseconds}ms");
+            TestContext.Progress.WriteLine($"Average: {stopwatch.ElapsedMilliseconds / paymentCount}ms per payment");
         }
 
         [Test]
@@ -107,7 +107,7 @@ namespace SubTrackr.Tests.NonFunctionalTests
             Assert.IsNotNull(report);
             Assert.AreEqual(50, report.ActiveSubscriptions.Count);
             
-            Console.WriteLine($"Performance: Report generated in {stopwatch.ElapsedMilliseconds}ms for 50 subscriptions and 500 payments");
+            TestContext.Progress.WriteLine($"Performance: Report generated in {stopwatch.ElapsedMilliseconds}ms for 50 subscriptions and 500 payments");
         }
 
         [Test]
@@ -140,7 +140,7 @@ namespace SubTrackr.Tests.NonFunctionalTests
             Assert.Less(createTime, 2000, $"Creating {userCount} users took {createTime}ms");
             Assert.Less(retrieveTime, 100, $"Retrieving {userCount} users took {retrieveTime}ms");
             
-            Console.WriteLine($"Performance: Created {userCount} users in {createTime}ms, retrieved in {retrieveTime}ms");
+            TestContext.Progress.WriteLine($"Performance: Created {userCount} users in {createTime}ms, retrieved in {retrieveTime}ms");
         }
     }
 }

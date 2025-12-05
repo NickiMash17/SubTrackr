@@ -15,9 +15,9 @@ namespace SubTrackr.Tests.UnitTests
     [TestFixture]
     public class SubscriptionServiceTests
     {
-        private Mock<IRepository<SubscriptionBase>> _mockRepo;
-        private Mock<INotificationService> _mockNotificationService;
-        private SubscriptionService _subscriptionService;
+        private Mock<IRepository<SubscriptionBase>> _mockRepo = null!;
+        private Mock<INotificationService> _mockNotificationService = null!;
+        private SubscriptionService _subscriptionService = null!;
 
         [SetUp]
         public void Setup()

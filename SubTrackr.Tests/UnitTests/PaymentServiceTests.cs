@@ -14,9 +14,9 @@ namespace SubTrackr.Tests.UnitTests
     [TestFixture]
     public class PaymentServiceTests
     {
-        private Mock<IRepository<Payment>> _mockRepo;
-        private Mock<INotificationService> _mockNotificationService;
-        private PaymentService _paymentService;
+        private Mock<IRepository<Payment>> _mockRepo = null!;
+        private Mock<INotificationService> _mockNotificationService = null!;
+        private PaymentService _paymentService = null!;
 
         [SetUp]
         public void Setup()

@@ -17,10 +17,10 @@ namespace SubTrackr.Tests.UnitTests
     [TestFixture]
     public class ReportServiceTests
     {
-        private Mock<IRepository<User>> _mockUserRepo;
-        private Mock<IRepository<SubscriptionBase>> _mockSubRepo;
-        private Mock<IRepository<Payment>> _mockPaymentRepo;
-        private ReportService _reportService;
+        private Mock<IRepository<User>> _mockUserRepo = null!;
+        private Mock<IRepository<SubscriptionBase>> _mockSubRepo = null!;
+        private Mock<IRepository<Payment>> _mockPaymentRepo = null!;
+        private ReportService _reportService = null!;
 
         [SetUp]
         public void Setup()
@@ -67,7 +67,7 @@ namespace SubTrackr.Tests.UnitTests
         public void GenerateMonthlyReport_NonExistentUser_ThrowsException()
         {
             // Arrange
-            _mockUserRepo.Setup(r => r.GetById(It.IsAny<string>())).Returns((User)null);
+            _mockUserRepo.Setup(r => r.GetById(It.IsAny<string>())).Returns<User>(default!);
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => 
@@ -108,8 +108,8 @@ namespace SubTrackr.Tests.UnitTests
     [TestFixture]
     public class NotificationServiceTests
     {
-        private Mock<IRepository<Notification>> _mockRepo;
-        private NotificationService _notificationService;
+        private Mock<IRepository<Notification>> _mockRepo = null!;
+        private NotificationService _notificationService = null!;
 
         [SetUp]
         public void Setup()
@@ -205,7 +205,8 @@ namespace SubTrackr.Tests.UnitTests
             // Assert
             Assert.IsInstanceOf<PremiumSubscription>(subscription);
             var premium = subscription as PremiumSubscription;
-            Assert.IsNotNull(premium.BonusFeatures);
+            Assert.IsNotNull(premium);
+            Assert.IsNotNull(premium!.BonusFeatures);
             Assert.IsTrue(premium.BonusFeatures.Count > 0);
         }
 
@@ -215,7 +216,7 @@ namespace SubTrackr.Tests.UnitTests
         {
             // Act & Assert
             Assert.Throws<ArgumentException>(() => 
-                SubscriptionFactory.CreateSubscription(type, "user1", "Plan", 10m, RenewalFrequency.Monthly));
+                SubscriptionFactory.CreateSubscription(type!, "user1", "Plan", 10m, RenewalFrequency.Monthly));
         }
 
         [TestCase(0)]

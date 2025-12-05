@@ -18,16 +18,16 @@ namespace SubTrackr.ConsoleApp
 {
     class Program
     {
-        private static UserRepository _userRepo;
-        private static SubscriptionRepository _subscriptionRepo;
-        private static PaymentRepository _paymentRepo;
-        private static NotificationRepository _notificationRepo;
+        private static UserRepository _userRepo = null!;
+        private static SubscriptionRepository _subscriptionRepo = null!;
+        private static PaymentRepository _paymentRepo = null!;
+        private static NotificationRepository _notificationRepo = null!;
 
-        private static UserService _userService;
-        private static NotificationService _notificationService;
-        private static PaymentService _paymentService;
-        private static SubscriptionService _subscriptionService;
-        private static ReportService _reportService;
+        private static UserService _userService = null!;
+        private static NotificationService _notificationService = null!;
+        private static PaymentService _paymentService = null!;
+        private static SubscriptionService _subscriptionService = null!;
+        private static ReportService _reportService = null!;
 
         private const string UsersFile = "users.json";
         private const string SubscriptionsFile = "subscriptions.json";
@@ -82,10 +82,17 @@ namespace SubTrackr.ConsoleApp
         {
             try
             {
-                _userRepo.LoadFromFile(UsersFile);
-                _subscriptionRepo.LoadFromFile(SubscriptionsFile);
-                _paymentRepo.LoadFromFile(PaymentsFile);
-                _notificationRepo.LoadFromFile(NotificationsFile);
+                // Get the directory where the executable is located
+                string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string usersPath = Path.Combine(exeDirectory, UsersFile);
+                string subscriptionsPath = Path.Combine(exeDirectory, SubscriptionsFile);
+                string paymentsPath = Path.Combine(exeDirectory, PaymentsFile);
+                string notificationsPath = Path.Combine(exeDirectory, NotificationsFile);
+
+                _userRepo.LoadFromFile(usersPath);
+                _subscriptionRepo.LoadFromFile(subscriptionsPath);
+                _paymentRepo.LoadFromFile(paymentsPath);
+                _notificationRepo.LoadFromFile(notificationsPath);
 
                 Console.WriteLine("[INFO] Data loaded successfully");
             }
@@ -100,16 +107,25 @@ namespace SubTrackr.ConsoleApp
         {
             try
             {
-                _userRepo.SaveToFile(UsersFile);
-                _subscriptionRepo.SaveToFile(SubscriptionsFile);
-                _paymentRepo.SaveToFile(PaymentsFile);
-                _notificationRepo.SaveToFile(NotificationsFile);
+                // Get the directory where the executable is located
+                string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string usersPath = Path.Combine(exeDirectory, UsersFile);
+                string subscriptionsPath = Path.Combine(exeDirectory, SubscriptionsFile);
+                string paymentsPath = Path.Combine(exeDirectory, PaymentsFile);
+                string notificationsPath = Path.Combine(exeDirectory, NotificationsFile);
+
+                _userRepo.SaveToFile(usersPath);
+                _subscriptionRepo.SaveToFile(subscriptionsPath);
+                _paymentRepo.SaveToFile(paymentsPath);
+                _notificationRepo.SaveToFile(notificationsPath);
 
                 Console.WriteLine("\n[INFO] Data saved successfully");
+                Console.WriteLine($"[INFO] Files saved to: {exeDirectory}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"\n[ERROR] Failed to save data: {ex.Message}");
+                Console.WriteLine($"[ERROR] Stack trace: {ex.StackTrace}");
             }
         }
 
@@ -316,7 +332,8 @@ namespace SubTrackr.ConsoleApp
             string planName = Console.ReadLine();
 
             Console.Write("Enter cost: $");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal cost))
+            string? costInput = Console.ReadLine()?.Trim();
+            if (string.IsNullOrWhiteSpace(costInput) || !decimal.TryParse(costInput, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal cost))
             {
                 Console.WriteLine("\n[ERROR] Invalid cost.");
                 return;
@@ -373,7 +390,8 @@ namespace SubTrackr.ConsoleApp
             string planName = Console.ReadLine();
 
             Console.Write("Enter new cost: $");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal cost))
+            string? costInput = Console.ReadLine()?.Trim();
+            if (string.IsNullOrWhiteSpace(costInput) || !decimal.TryParse(costInput, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal cost))
             {
                 Console.WriteLine("\n[ERROR] Invalid cost.");
                 return;
@@ -459,7 +477,8 @@ namespace SubTrackr.ConsoleApp
             }
 
             Console.Write("Enter payment amount: $");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal amount))
+            string? amountInput = Console.ReadLine()?.Trim();
+            if (string.IsNullOrWhiteSpace(amountInput) || !decimal.TryParse(amountInput, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal amount))
             {
                 Console.WriteLine("\n[ERROR] Invalid amount.");
                 return;

@@ -16,8 +16,8 @@ namespace SubTrackr.Tests.UnitTests
     [TestFixture]
     public class UserServiceTests
     {
-        private Mock<IRepository<User>> _mockRepo;
-        private UserService _userService;
+        private Mock<IRepository<User>> _mockRepo = null!;
+        private UserService _userService = null!;
 
         [SetUp]
         public void Setup()
@@ -81,7 +81,7 @@ namespace SubTrackr.Tests.UnitTests
         public void UpdateUser_NonExistentUser_ThrowsInvalidOperationException()
         {
             // Arrange
-            _mockRepo.Setup(r => r.GetById(It.IsAny<string>())).Returns((User)null);
+            _mockRepo.Setup(r => r.GetById(It.IsAny<string>())).Returns<User>(default!);
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => 

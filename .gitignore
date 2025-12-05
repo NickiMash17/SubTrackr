@@ -361,3 +361,17 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# SubTrackr application data files (generated at runtime)
+*.json
+!**/project.assets.json
+!**/project.nuget.g.props
+!**/project.nuget.g.targets
+!**/*.csproj.nuget.g.props
+!**/*.csproj.nuget.g.targets
+!**/*.deps.json
+!**/*.runtimeconfig.json
+
+# Coverage reports
+coverage-results/
+coverage-report/

@@ -18,15 +18,15 @@ namespace SubTrackr.Tests.IntegrationTests
     [TestFixture]
     public class SubscriptionPaymentIntegrationTests
     {
-        private UserRepository _userRepo;
-        private SubscriptionRepository _subscriptionRepo;
-        private PaymentRepository _paymentRepo;
-        private NotificationRepository _notificationRepo;
+        private UserRepository _userRepo = null!;
+        private SubscriptionRepository _subscriptionRepo = null!;
+        private PaymentRepository _paymentRepo = null!;
+        private NotificationRepository _notificationRepo = null!;
         
-        private UserService _userService;
-        private NotificationService _notificationService;
-        private PaymentService _paymentService;
-        private SubscriptionService _subscriptionService;
+        private UserService _userService = null!;
+        private NotificationService _notificationService = null!;
+        private PaymentService _paymentService = null!;
+        private SubscriptionService _subscriptionService = null!;
 
         [SetUp]
         public void Setup()
@@ -140,16 +140,16 @@ namespace SubTrackr.Tests.IntegrationTests
     [TestFixture]
     public class EndToEndWorkflowTests
     {
-        private UserRepository _userRepo;
-        private SubscriptionRepository _subscriptionRepo;
-        private PaymentRepository _paymentRepo;
-        private NotificationRepository _notificationRepo;
+        private UserRepository _userRepo = null!;
+        private SubscriptionRepository _subscriptionRepo = null!;
+        private PaymentRepository _paymentRepo = null!;
+        private NotificationRepository _notificationRepo = null!;
         
-        private UserService _userService;
-        private NotificationService _notificationService;
-        private PaymentService _paymentService;
-        private SubscriptionService _subscriptionService;
-        private ReportService _reportService;
+        private UserService _userService = null!;
+        private NotificationService _notificationService = null!;
+        private PaymentService _paymentService = null!;
+        private SubscriptionService _subscriptionService = null!;
+        private ReportService _reportService = null!;
 
         [SetUp]
         public void Setup()
