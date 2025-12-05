@@ -142,7 +142,7 @@ namespace SubTrackr.ConsoleApp
             Console.WriteLine("6. Save & Exit");
             Console.Write("\nSelect option: ");
 
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine() ?? "";
 
             try
             {
@@ -186,7 +186,7 @@ namespace SubTrackr.ConsoleApp
             Console.WriteLine("4. Remove User");
             Console.Write("Select option: ");
 
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine() ?? "";
 
             switch (choice)
             {
@@ -208,10 +208,10 @@ namespace SubTrackr.ConsoleApp
         static void AddUser()
         {
             Console.Write("Enter name: ");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine() ?? "";
 
             Console.Write("Enter email: ");
-            string email = Console.ReadLine();
+            string email = Console.ReadLine() ?? "";
 
             Console.WriteLine("Select role:");
             Console.WriteLine("1. Customer");
@@ -219,7 +219,7 @@ namespace SubTrackr.ConsoleApp
             Console.WriteLine("3. System Process");
             Console.Write("Choice: ");
 
-            string roleChoice = Console.ReadLine();
+            string roleChoice = Console.ReadLine() ?? "";
             UserRole role = roleChoice switch
             {
                 "1" => UserRole.Customer,
@@ -255,7 +255,7 @@ namespace SubTrackr.ConsoleApp
         static void UpdateUser()
         {
             Console.Write("Enter user ID to update: ");
-            string userId = Console.ReadLine();
+            string userId = Console.ReadLine() ?? "";
 
             var user = _userService.GetUser(userId);
             if (user == null)
@@ -265,11 +265,11 @@ namespace SubTrackr.ConsoleApp
             }
 
             Console.Write($"Enter new name (current: {user.Name}): ");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine() ?? "";
             if (string.IsNullOrWhiteSpace(name)) name = user.Name;
 
             Console.Write($"Enter new email (current: {user.Email}): ");
-            string email = Console.ReadLine();
+            string email = Console.ReadLine() ?? "";
             if (string.IsNullOrWhiteSpace(email)) email = user.Email;
 
             _userService.UpdateUser(userId, name, email, user.Role);
@@ -279,7 +279,7 @@ namespace SubTrackr.ConsoleApp
         static void RemoveUser()
         {
             Console.Write("Enter user ID to remove: ");
-            string userId = Console.ReadLine();
+            string userId = Console.ReadLine() ?? "";
 
             _userService.RemoveUser(userId);
             Console.WriteLine("\n[SUCCESS] User removed successfully!");
@@ -294,7 +294,7 @@ namespace SubTrackr.ConsoleApp
             Console.WriteLine("5. Renew Subscription");
             Console.Write("Select option: ");
 
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine() ?? "";
 
             switch (choice)
             {
@@ -319,17 +319,17 @@ namespace SubTrackr.ConsoleApp
         static void CreateSubscription()
         {
             Console.Write("Enter user ID: ");
-            string userId = Console.ReadLine();
+            string userId = Console.ReadLine() ?? "";
 
             Console.WriteLine("Select subscription type:");
             Console.WriteLine("1. Basic");
             Console.WriteLine("2. Premium");
             Console.Write("Choice: ");
-            string typeChoice = Console.ReadLine();
+            string typeChoice = Console.ReadLine() ?? "";
             string type = typeChoice == "2" ? "premium" : "basic";
 
             Console.Write("Enter plan name: ");
-            string planName = Console.ReadLine();
+            string planName = Console.ReadLine() ?? "";
 
             Console.Write("Enter cost: $");
             string? costInput = Console.ReadLine()?.Trim();
@@ -344,7 +344,7 @@ namespace SubTrackr.ConsoleApp
             Console.WriteLine("2. Quarterly");
             Console.WriteLine("3. Yearly");
             Console.Write("Choice: ");
-            string freqChoice = Console.ReadLine();
+            string freqChoice = Console.ReadLine() ?? "";
             RenewalFrequency frequency = freqChoice switch
             {
                 "2" => RenewalFrequency.Quarterly,
@@ -384,10 +384,10 @@ namespace SubTrackr.ConsoleApp
         static void UpdateSubscription()
         {
             Console.Write("Enter subscription ID: ");
-            string subId = Console.ReadLine();
+            string subId = Console.ReadLine() ?? "";
 
             Console.Write("Enter new plan name: ");
-            string planName = Console.ReadLine();
+            string planName = Console.ReadLine() ?? "";
 
             Console.Write("Enter new cost: $");
             string? costInput = Console.ReadLine()?.Trim();
@@ -404,10 +404,10 @@ namespace SubTrackr.ConsoleApp
         static void CancelSubscription()
         {
             Console.Write("Enter subscription ID: ");
-            string subId = Console.ReadLine();
+            string subId = Console.ReadLine() ?? "";
 
             Console.Write("Enter user ID: ");
-            string userId = Console.ReadLine();
+            string userId = Console.ReadLine() ?? "";
 
             var user = _userService.GetUser(userId);
             if (user == null)
@@ -423,7 +423,7 @@ namespace SubTrackr.ConsoleApp
         static void RenewSubscription()
         {
             Console.Write("Enter subscription ID: ");
-            string subId = Console.ReadLine();
+            string subId = Console.ReadLine() ?? "";
 
             _subscriptionService.RenewSubscription(subId);
             Console.WriteLine("\n[SUCCESS] Subscription renewed successfully!");
@@ -436,7 +436,7 @@ namespace SubTrackr.ConsoleApp
             Console.WriteLine("3. View Payment History");
             Console.Write("Select option: ");
 
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine() ?? "";
 
             switch (choice)
             {
@@ -455,7 +455,7 @@ namespace SubTrackr.ConsoleApp
         static void ProcessPayment()
         {
             Console.Write("Enter user ID: ");
-            string userId = Console.ReadLine();
+            string userId = Console.ReadLine() ?? "";
 
             var user = _userService.GetUser(userId);
             if (user == null)
@@ -465,7 +465,7 @@ namespace SubTrackr.ConsoleApp
             }
 
             Console.Write("Enter subscription ID: ");
-            string subId = Console.ReadLine();
+            string subId = Console.ReadLine() ?? "";
 
             var subscription = _subscriptionService.GetAllSubscriptions()
                 .FirstOrDefault(s => s.Id == subId);
@@ -499,7 +499,7 @@ namespace SubTrackr.ConsoleApp
         static void RetryFailedPayment()
         {
             Console.Write("Enter payment ID: ");
-            string paymentId = Console.ReadLine();
+            string paymentId = Console.ReadLine() ?? "";
 
             var payment = _paymentRepo.GetById(paymentId);
             if (payment == null)
@@ -523,7 +523,7 @@ namespace SubTrackr.ConsoleApp
         static void ViewPaymentHistory()
         {
             Console.Write("Enter user ID: ");
-            string userId = Console.ReadLine();
+            string userId = Console.ReadLine() ?? "";
 
             var payments = _paymentService.GetPaymentHistory(userId);
 
@@ -551,7 +551,7 @@ namespace SubTrackr.ConsoleApp
         static void ViewNotificationsMenu()
         {
             Console.Write("Enter user ID: ");
-            string userId = Console.ReadLine();
+            string userId = Console.ReadLine() ?? "";
 
             var notifications = _notificationService.GetUserNotifications(userId);
 
@@ -573,17 +573,17 @@ namespace SubTrackr.ConsoleApp
         static void GenerateReportsMenu()
         {
             Console.Write("Enter user ID: ");
-            string userId = Console.ReadLine();
+            string userId = Console.ReadLine() ?? "";
 
             Console.Write("Enter month (1-12): ");
-            if (!int.TryParse(Console.ReadLine(), out int month) || month < 1 || month > 12)
+            if (!int.TryParse(Console.ReadLine() ?? "", out int month) || month < 1 || month > 12)
             {
                 Console.WriteLine("\n[ERROR] Invalid month.");
                 return;
             }
 
             Console.Write("Enter year: ");
-            if (!int.TryParse(Console.ReadLine(), out int year))
+            if (!int.TryParse(Console.ReadLine() ?? "", out int year))
             {
                 Console.WriteLine("\n[ERROR] Invalid year.");
                 return;
